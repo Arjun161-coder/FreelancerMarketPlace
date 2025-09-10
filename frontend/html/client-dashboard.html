@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Dashboard - Freelancers Marketplace</title>
+  <link rel="stylesheet" href="../css/client-dashboard.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Freelancers Marketplace</div>
+      <ul class="nav-links">
+        <li><a href="client-dashboard.html">Dashboard</a></li>
+        <li><a href="post-project.html">Post Work</a></li>
+        <li><a href="hire-freelancer.html">Hire Freelancer</a></li>
+        <li><a href="my-projects.html">My Projects</a></li>
+        <li><a href="notifications.html">Notifications</a></li>
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to the Freelancers Marketplace</h1>
+    <p>Hire top talent for your projects today.</p>
+  </section>
+
+  <section class="filters">
+    <label for="category">Category:</label>
+    <select id="category">
+      <option value="">All</option>
+      <option value="web">Web Development</option>
+      <option value="graphic">Graphic Design</option>
+      <option value="writing">Content Writing</option>
+    </select>
+
+    <label for="budget">Budget:</label>
+    <select id="budget">
+      <option value="">All</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </section>
+
+  <section class="featured">
+    <h2>Featured Freelancers</h2>
+    <div class="freelancer-grid">
+      <div class="freelancer-card">
+        <img src="../img/Arjun.jpg" alt="Freelancer 1">
+        <h3>Arjun Reddy</h3>
+        <p>Web Developer</p>
+      </div>
+      <div class="freelancer-card">
+        <img src="../img/naya.png" alt="Freelancer 2">
+        <h3>Meghana Rao</h3>
+        <p>Graphic Designer</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background-color: #222; color: white; padding: 3rem 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+    <div style="flex: 1; min-width: 200px;">
+      <h3>About Freelancers Marketplace</h3>
+      <p>
+        Freelancers Marketplace connects clients with skilled professionals across the globe.
+        Post projects, hire freelancers, and grow your business effortlessly.
+      </p>
+    </div>
+    <div style="flex: 1; min-width: 200px;">
+      <h3>Quick Links</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li><a href="client-dashboard.html" style="color: white; text-decoration: none;">Dashboard</a></li>
+        <li><a href="post-project.html" style="color: white; text-decoration: none;">Post a Project</a></li>
+        <li><a href="hire-freelancer.html" style="color: white; text-decoration: none;">Hire Freelancer</a></li>
+        <li><a href="my-projects.html" style="color: white; text-decoration: none;">My Projects</a></li>
+      </ul>
+    </div>
+    <div style="flex: 1; min-width: 200px;">
+      <h3>Contact Us</h3>
+      <p>Email: support@freelancemarket.com</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Location: Hyderabad, India</p>
+    </div>
+    <div style="flex: 1; min-width: 200px;">
+      <h3>Follow Us</h3>
+      <a href="#" style="color: white; text-decoration: none; margin-right: 1rem;">Facebook</a>
+      <a href="#" style="color: white; text-decoration: none; margin-right: 1rem;">LinkedIn</a>
+      <a href="#" style="color: white; text-decoration: none;">Twitter</a>
+    </div>
+    <div style="width: 100%; text-align: center; margin-top: 2rem; border-top: 1px solid #444; padding-top: 1rem;">
+      &copy; 2025 Freelancers Marketplace. All rights reserved.
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Work</title>
+  <link rel="stylesheet" href="../css/index.css" />
+  <style>
+    .apply-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .apply-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2>Available Projects</h2>
+  <div id="projectsContainer"></div>
+
+  <script>
+    async function loadProjects() {
+      const res = await fetch("http://localhost:3000/api/projects");
+      const projects = await res.json();
+
+      const container = document.getElementById("projectsContainer");
+      container.innerHTML = projects.map(p => `
+        <div class="project-card">
+          <h3>${p.title}</h3>
+          <p><strong>Description:</strong> ${p.description}</p>
+          <p><strong>Skills:</strong> ${p.skills_required}</p>
+          <p><strong>Budget:</strong> ₹${p.budget}</p>
+          <button class="apply-btn" onclick="applyProject(${p.id})">Apply</button>
+        </div>
+      `).join("");
+    }
+
+    function applyProject(projectId) {
+      sessionStorage.setItem("selectedProjectId", projectId);
+      window.location.href = "../apply.html";
+    }
+
+    loadProjects();
+  </script>
+</body>
+</html>

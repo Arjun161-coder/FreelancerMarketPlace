@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hire Freelancer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f6f9; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    .freelancer-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .freelancer-card img {
+      width: 100px; height: 100px; object-fit: cover; border-radius: 50%;
+    }
+    .freelancer-details { display: flex; gap: 20px; align-items: center; }
+    .freelancer-details h2 { margin: 0; color: #2c3e50; }
+    .freelancer-details p { margin: 5px 0; }
+    .freelancer-details button {
+      padding: 8px 15px;
+      background: #007bff; color: #fff;
+      border: none; border-radius: 5px;
+      cursor: pointer;
+    }
+    .freelancer-details button:hover { background: #0056b3; }
+
+    /* Modal */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+      justify-content: center; align-items: center;
+    }
+    .modal-content {
+      background: #fff; padding: 20px; border-radius: 10px;
+      width: 400px; max-width: 90%;
+    }
+    .modal-content input, .modal-content textarea {
+      width: 100%; padding: 8px; margin: 5px 0;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    .modal-content button { margin-top: 10px; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Available Freelancers</h1>
+  <div id="freelancerList"></div>
+
+  <!-- Hire Modal -->
+  <div id="hireModal" class="modal">
+    <div class="modal-content">
+      <h2>Hire Freelancer</h2>
+      <form id="hireForm">
+        <input type="hidden" id="freelancerEmail" name="freelancerEmail">
+        <input type="hidden" id="freelancerName" name="freelancerName">
+
+        <label>Project Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label>Requirements</label>
+        <textarea id="requirements" name="requirements" required></textarea>
+
+        <label>Budget (₹)</label>
+        <input type="number" id="budget" name="budget" required>
+
+        <label>Deadline</label>
+        <input type="date" id="deadline" name="deadline" required>
+
+        <button type="submit">Send Hire Request</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Load freelancers (mock API call)
+    fetch("http://localhost:3000/api/freelancers")
+      .then(res => res.json())
+      .then(freelancers => {
+        const list = document.getElementById("freelancerList");
+        freelancers.forEach(freelancer => {
+          const div = document.createElement("div");
+          div.className = "freelancer-card";
+          div.innerHTML = `
+            <div class="freelancer-details">
+              <img src="/uploads/${freelancer.profileImage}" alt="${freelancer.name}" />
+              <div>
+                <h2>${freelancer.name}</h2>
+                <p><strong>Location:</strong> ${freelancer.location}</p>
+                <p><strong>Rate:</strong> ₹${freelancer.rate}/hr</p>
+                <p><strong>Skills:</strong> ${freelancer.skills}</p>
+                <button onclick="openHireModal('${freelancer.name}','${freelancer.email}')">Hire</button>
+              </div>
+            </div>
+          `;
+          list.appendChild(div);
+        });
+      })
+      .catch(err => console.error("Error loading freelancers:", err));
+
+    // Modal handling
+    const modal = document.getElementById("hireModal");
+    function openHireModal(name, email) {
+      document.getElementById("freelancerEmail").value = email;
+      document.getElementById("freelancerName").value = name;
+      modal.style.display = "flex";
+    }
+    function closeModal() { modal.style.display = "none"; }
+
+    // Submit Hire Request
+    document.getElementById("hireForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const formData = Object.fromEntries(new FormData(this).entries());
+
+      try {
+        const response = await fetch("http://localhost:3000/api/hire", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          alert("Hire request sent to freelancer!");
+
+          // Save notification to localStorage
+          const notifications = JSON.parse(localStorage.getItem("notifications")) || [];
+          notifications.unshift({
+            projectTitle: formData.title,
+            freelancerName: formData.freelancerName,
+            budget: "₹" + formData.budget,
+            deadline: formData.deadline,
+            message: formData.requirements,
+            time: new Date().toLocaleString()
+          });
+          localStorage.setItem("notifications", JSON.stringify(notifications));
+
+          closeModal();
+        } else {
+          const errText = await response.text();
+          alert("Failed to send request. Server says: " + errText);
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Server error: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

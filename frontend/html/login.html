@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" name="email" placeholder="Email" required><br><br>
+      <input type="password" name="password" placeholder="Password" required><br><br>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+  </div>
+
+  <script>
+  document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    const response = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Store email in sessionStorage
+      sessionStorage.setItem("email", data.email);
+
+      // Redirect based on user role
+      if (result.role === "client") {
+        window.location.href = "../client-dashboard.html"; // or post-project.html
+      } else if (result.role === "freelancer") {
+        window.location.href = "../freelancer-dashboard.html";
+      } else {
+        alert("Unknown role.");
+      }
+    } else {
+      alert(result.message);
+    }
+  });
+</script>
+
+</body>
+</html>

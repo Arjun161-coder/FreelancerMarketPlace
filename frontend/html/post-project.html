@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Post Project</title>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Post a New Project</h2>
+    <form id="postProjectForm">
+      <label for="title">Project Title:</label><br>
+      <input type="text" id="title" name="title" required /><br><br>
+
+      <label for="description">Project Description:</label><br>
+      <textarea id="description" name="description" required></textarea><br><br>
+
+      <label for="skills">Skills Required:</label><br>
+      <input type="text" id="skills" name="skills" required /><br><br>
+
+      <label for="budget">Budget (in USD):</label><br>
+      <input type="number" id="budget" name="budget" required /><br><br>
+
+      <button type="submit">Post Project</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("postProjectForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const skills = document.getElementById("skills").value;
+      const budget = document.getElementById("budget").value;
+
+      const client_email = sessionStorage.getItem("email");
+
+      if (!client_email) {
+        alert("You're not logged in. Please log in first.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:3000/api/post-project", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            description,
+            skills,
+            budget,
+            client_email
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert("Project posted successfully!");
+          document.getElementById("postProjectForm").reset();
+        } else {
+          alert("Failed to post project: " + data.message);
+        }
+      } catch (error) {
+        alert("Error posting project: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>

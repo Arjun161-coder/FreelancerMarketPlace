@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freelancers Marketplace</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">Freelancers Marketplace</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="signup.html">Signup</a></li>
+      <li><a href="post-project.html">Post Work</a></li>
+      <li><a href="hire-freelancer.html">Hire Freelancer</a></li>
+      <li><a href="find-work.html">Find Work</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>Welcome to Freelancers Marketplace</h1>
+    <p>Find top talent or your next freelance gig — fast and easy.</p>
+  </header>
+
+  <section class="filters">
+    <h2>Browse by Skills</h2>
+    <div class="skills">
+      <button>Web Development</button>
+      <button>Graphic Design</button>
+      <button>Content Writing</button>
+      <button>Digital Marketing</button>
+      <button>Mobile Apps</button>
+      <button>Data Entry</button>
+    </div>
+  </section>
+
+  <section class="image-gallery">
+    <img src="../img/upwork.webp" alt="Freelancers working">
+    <img src="../img/Hire-Freelancer.jpg" alt="Featured Freelancer">
+  </section>
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>1. What is Freelancers Marketplace?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>Freelancers Marketplace connects clients and freelancers for various projects like development, design,
+          writing, and more.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>2. How do I sign up as a freelancer?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>Click "Signup" in the navbar, fill in your details, and choose "Freelancer" as your role.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>3. How can I post a project?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>Click "Post Work", then fill in the project form with title, description, skills, and budget.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>4. Is there a fee to join?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>No, both clients and freelancers can sign up and use the platform for free.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>5. How are freelancers hired?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>Clients browse by skill, view profiles, and assign freelancers based on proposals.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>6. Can I upload my resume and portfolio?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>Yes, freelancers can upload resumes and add GitHub or LinkedIn links in their profiles.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="question">
+        <span>7. How will I get notified of updates?</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="answer">
+        <p>You’ll get dashboard notifications when clients assign or respond to your application.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>About Freelancers Marketplace</h3>
+        <p>A platform that connects clients and freelancers across the globe to collaborate and succeed.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Signup</a></li>
+          <li><a href="post-project.html">Post Work</a></li>
+          <li><a href="find-work.html">Find Work</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: support@freelancemarket.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Location: Hyderabad, India</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><img src="../img/fac.jpeg" alt="Facebook" /></a>
+          <a href="#"><img src="../img/twi.jpeg" alt="Twitter" /></a>
+          <a href="#"><img src="../img/lin.jpeg" alt="LinkedIn" /></a>
+          <a href="#"><img src="../img/git.jpeg" alt="GitHub" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Freelancers Marketplace. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    item.querySelector('.question').addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+
+</html>

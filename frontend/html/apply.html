@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apply for Project</title>
+  <link rel="stylesheet" href="../css/index.css" />
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Apply for Project</h2>
+
+  <form id="applyForm" action="http://localhost:3000/api/apply" method="POST" enctype="multipart/form-data">
+    <!-- Replace with actual project ID -->
+    <input type="hidden" name="project_id" value="1" />
+
+    <label for="email">Your Email:</label>
+    <input type="email" name="email" id="email" required />
+
+    <label for="resume">Upload Resume:</label>
+    <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx" required />
+
+    <label for="estimated_days">Estimated Completion Days:</label>
+    <input type="number" name="estimated_days" id="estimated_days" min="1" required />
+
+    <label for="bid_amount">Bid Amount ($):</label>
+    <input type="number" name="bid_amount" id="bid_amount" min="1" step="0.01" required />
+
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <script>
+    // Optional: auto-fill email if user is logged in (if using local/session storage or dynamic JS)
+    // document.getElementById('email').value = "freelancer@example.com";
+  </script>
+
+</body>
+</html>
